@@ -1,0 +1,11 @@
+#!/bin/bash
+
+for f in *.weir.fst
+do
+  echo -n "$f: "
+  awk 'NR>1 && $3 ~ /^-?[0-9.]+$/ {sum+=$3; count++} END {if(count>0) print sum/count; else >
+done
+# awk calculates avg fst across SNPs
+# NR>1 to skip header
+# only include numeric values -> exclude (nan/-nan)
+# this is script that runs in fst_results folder but this is a copy to keep in scripts folder
