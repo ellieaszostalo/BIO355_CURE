@@ -1,0 +1,51 @@
+#!/bin/bash
+
+LABDIR=/Users/classes/bio355b/CURE_projects/inbreeding
+OUTDIR=$LABDIR/fst_results
+VCF=/Users/classes/bio355b/CURE_projects/inbreeding/data_raw/variants_4817snps_123inds.vcf
+
+vcftools=/usr/local/bin/vcftools
+
+# pop files with indv IDs
+POPS=(
+"$LABDIR/data_processed/popID.txt"
+"$LABDIR/data_processed/popWY.txt"
+"$LABDIR/data_processed/popORS.txt"
+"$LABDIR/data_processed/popORN.txt"
+"$LABDIR/data_processed/popCA.txt"
+)
+
+mkdir -p "$OUTDIR"
+cd "$LABDIR"
+
+#loop all pairs for pairwise comparison
+for ((i=0; i<${#POPS[@]}; i++))
+do
+  for ((j=i+1; j<${#POPS[@]}; j++))
+  do
+    POP1=${POPS[$i]}
+    POP2=${POPS[$j]}
+
+#clean pop names
+    NAME1=$(basename $POP1 .txt)
+    NAME1=${NAME1#pop}
+
+    NAME2=$(basename $POP2 .txt)
+    NAME2=${NAME2#pop}
+
+    echo "Running FST: $NAME1 vs $NAME2"
+
+#calculate fst
+    $vcftools --vcf $VCF \
+      --weir-fst-pop $POP1 \
+      --weir-fst-pop $POP2 \
+      --out $OUTDIR/${NAME1}_vs_${NAME2}
+      
+        done
+done
+
+echo "Extracting weighted FST values..."
+grep "WEIGHTED FST" $OUTDIR/*.log > $OUTDIR/fst_summary.txt
+
+echo "FST analysis complete!"
+echo "Results saved in: $OUTDIR"
