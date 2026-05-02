@@ -40,3 +40,26 @@ ggplot(fst_long, aes(Population1, Population2, fill = FST)) +
     fill = "FST"
   ) +
   theme_minimal()
+
+## Plot for Heterozygosity Values
+# Create dataframe
+hg_df <- data.frame(
+  category = c("CA", "ID", "WY", "ORS", "ORN"),
+  value = c(0.43045, 0.369254, 0.322044, 0.425942, 0.442362)
+)
+
+# Load ggplot2
+library(ggplot2)
+
+# Create plot
+ggplot(hg_df, aes(x = category, y = value, color = category)) +
+  geom_point(size = 3) +
+  labs(
+    title = "Heterozygosity by Population",
+    x = "Population",
+    y = "Heterozygosity Value"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold")
+  )
