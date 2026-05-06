@@ -1,0 +1,22 @@
+#setting the path 
+path <- "/Users/classes/bio355b/CURE_projects/inbreeding/data_processed/"
+
+ca  <- read_table(paste0(path, "popCA_het.het"))  %>% mutate(Population = "California")
+wy  <- read_table(paste0(path, "popWY_het.het"))  %>% mutate(Population = "Wyoming")
+id  <- read_table(paste0(path, "popID_het.het"))  %>% mutate(Population = "Idaho")
+orn <- read_table(paste0(path, "popORN_het.het")) %>% mutate(Population = "N. Oregon")
+ors <- read_table(paste0(path, "popORS_het.het")) %>% mutate(Population = "S. Oregon")
+
+#combine all populations to make graphing easier 
+all_het <- bind_rows(ca, wy, id, orn, ors)
+
+#plotting
+ggplot(all_het, aes(x = Population, y = F, fill = Population)) +
+  geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+  theme_classic() +
+  labs(
+    title = "Inbreeding Coefficients (F) by Population",
+    x = "Population",
+    y = "Inbreeding Coefficient (F)"
+  ) +
+  theme(legend.position = "none")
