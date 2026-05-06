@@ -34,6 +34,7 @@ The most likely biological process behind inbreeding and genomic erosion in the 
 -   FST (pairwise comparison)
 -   ROH / inbreeding 
 -   Population and Species Level Heterozygosity and Homozygosity
+-   Minor Allele Frequency
 
 ------------------------------------------------------------------------
 
