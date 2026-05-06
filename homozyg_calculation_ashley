@@ -1,0 +1,5 @@
+#!/bin/bash
+awk '{ if(NR>1) sum += ($2/$4) } END { print "Observed Homozygosity:", sum/(NR-1) }' popWY_het.het
+awk '{ if(NR>1) sum += ($2/$4) } END { print "Observed Homozygosity:", sum/(NR-1) }' popID_het.het
+awk '{ if(NR>1) sum += ($2/$4) } END { print "Observed Homozygosity:", sum/(NR-1) }' popCA_het.het
+awk '{ if(NR>1) sum += ($2/$4) } END { print "Observed Homozygosity:", sum/(NR-1) }' species_level_het.het
