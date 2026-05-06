@@ -1,0 +1,24 @@
+#!/bin/bash
+#path 
+LABDIR="/Users/classes/bio355b/CURE_projects/inbreeding"
+OUTDIR="$LABDIR/data_processed/roh_results"
+VCF="$LABDIR/data_raw/variants_4817snps_123inds.vcf"
+
+plink=/usr/local/plink/plink
+
+#output dir 
+mkdir -p "$OUTDIR"
+cd "$LABDIR"
+
+$plink --vcf "$VCF" \
+  --allow-extra-chr \
+  --double-id \
+  --homozyg \
+  --homozyg-snp 20 \
+  --homozyg-kb 50 \
+  --homozyg-density 150 \
+  --homozyg-gap 1000 \
+  --homozyg-window-snp 20 \
+  --homozyg-window-het 1 \
+  --out "$OUTDIR/owl_roh"
+
