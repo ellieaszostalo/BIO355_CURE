@@ -48,15 +48,6 @@ The most likely biological process behind inbreeding and genomic erosion in the 
 
 ------------------------------------------------------------------------
 
-## Workflow notes
-
-Brief summary of your workflow: 
-- How data was filtered 
-- Key analysis steps 
-- Any important decisions
-
-------------------------------------------------------------------------
-
 ## Notes
 
--   Any challenges or important observations of the data
+-   We were unable to perform ROH analysis on the SNP data
