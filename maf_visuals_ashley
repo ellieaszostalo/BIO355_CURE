@@ -1,0 +1,17 @@
+
+#create a data frame with all of the Minor allele frequency values of the populations
+maf_data <- data.frame(
+  Population = c("California", "S. Oregon", "N. Oregon", "Idaho", "Wyoming"),
+  Mean_MAF = c(0.199943, 0.19555, NA, 0.189208, 0.179003)
+)
+
+#Plot the graph 
+ggplot(maf_data, aes(x = Population, y = Mean_MAF, fill = Population)) +
+  geom_col(color = "black") +
+  scale_fill_manual(values = c("#872653", "#226d8f", "#e9136a", "#ff6611", "#619251")) +
+  theme_minimal() +
+  labs(
+    title = "Mean Minor Allele Frequency by Population",
+    x = "Population",
+    y = "Mean MAF"
+  )
